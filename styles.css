@@ -1,147 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background Gradient */
 body {
+    background: linear-gradient(to bottom right, #1E3A8A, #2563EB);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
-h1 {
-    color: #333;
-    font-size: 2.5rem;
-    text-align: center;
-}
-
-/* Global styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    height: 100%;
-}
-
-/* Background styling */
-.background {
-    height: 100vh;
-    background: linear-gradient(135deg, #0D1B2A, #1B263B);
+/* Main Container */
+.container {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    height: 80%;
+    background: linear-gradient(to bottom right, #1E2A48, #1A3A72);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+
+/* Decorative Circles */
+.container::before,
+.container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 0;
+}
+
+.container::before {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: -100px;
+}
+
+.container::after {
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    right: -100px;
+}
+
+/* Login Form Styling */
+.login-form {
     position: relative;
-}
-
-/* Background decorative elements */
-.background::before {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    top: -200px;
-    left: -200px;
-}
-
-.background::after {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    bottom: -200px;
-    right: -200px;
-}
-
-/* Login Container */
-.login-container {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    padding: 30px;
-    width: 320px;
+    z-index: 1;
+    background: #2C3E50;
+    border-radius: 8px;
+    padding: 40px;
+    width: 350px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.login-container h1 {
-    color: #fff;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-/* Input fields */
-.login-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.login-container input::placeholder {
-    color: #999;
-}
-
-.login-container input:focus {
-    outline: none;
-    border: 1px solid #3B82F6;
-}
-
-/* Login button */
-.login-container button {
-    margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3B82F6;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.login-container button:hover {
-    background-color: #1E3A8A;
-}
-
-/* Signup link */
-.signup-link {
-    margin-top: 15px;
-    font-size: 12px;
-    color: #ddd;
-}
-
-.signup-link a {
-    color: #3B82F6;
-    text-decoration: none;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-}
-
-
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: Arial, sans-serif;
-}
-
-/* Vycentrovaný content*/
-.container {
-    text-align: center;
+/* Form Heading */
+.login-form h2 {
+    margin-bottom: 30px;
     color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Input Fields */
+.login-form input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 12px 0;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background: #34495E;
+    color: #fff;
+}
+
+.login-form input::placeholder {
+    color: #aaa;
+}
+
+/* Button */
+.login-form button {
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    width: calc(100% - 20px);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.login-form button:hover {
+    background: #1E40AF;
+}
+
+/* Footer Text */
+.login-form p {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.login-form p a {
+    color: #2563EB;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-form p a:hover {
+    text-decoration: underline;
 }
