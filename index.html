@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achoj, prihlás sa prosím</title>
+    <title>Ahoj, prihlás sa prosím</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="login-form">
-            <h2>Vitaj</h2>
-            <p>prihlás sa prosím</p>
-            <input type="email" placeholder="Tvoj e-mail">
-            <input type="password" placeholder="A sem tvoje heslo">
-            <button>Prihlásiť sa</button>
-            <p>Nemáš ešte účet? <a href="#">Vytvor si ho</a></p>
+    <div class="container" id="container">
+        <div class="form-container" id="formContainer">
+            <h2 id="formTitle">Vitaj späť</h2>
+            
+            <!-- Login Form -->
+            <div id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email Address" />
+                <input type="password" id="loginPassword" placeholder="Password" />
+                <button class="form-button" id="loginButton">Log In</button>
+                <p class="switch-form">Nemáš ešte účet? <a href="#" id="showSignup">Vytvor si ho</a></p>
+            </div>
+            
+            <!-- Signup Form -->
+            <div id="signupForm" class="hidden">
+                <input type="text" id="signupNickname" placeholder="Nickname" />
+                <input type="email" id="signupEmail" placeholder="Email Address" />
+                <input type="password" id="signupPassword" placeholder="Password" />
+                <button class="form-button" id="signupButton">Sign Up</button>
+                <p class="switch-form">Máš už účet? <a href="#" id="showLogin">Prihlás sa</a></p>
+            </div>
         </div>
     </div>
 </body>
