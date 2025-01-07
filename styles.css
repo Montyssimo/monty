@@ -14,7 +14,119 @@ h1 {
     text-align: center;
 }
 
-/* Pozadie celej stránky */
+/* Global styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+}
+
+/* Background styling */
+.background {
+    height: 100vh;
+    background: linear-gradient(135deg, #0D1B2A, #1B263B);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background decorative elements */
+.background::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    top: -200px;
+    left: -200px;
+}
+
+.background::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -200px;
+    right: -200px;
+}
+
+/* Login Container */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.login-container h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Input fields */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.login-container input::placeholder {
+    color: #999;
+}
+
+.login-container input:focus {
+    outline: none;
+    border: 1px solid #3B82F6;
+}
+
+/* Login button */
+.login-container button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3B82F6;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #1E3A8A;
+}
+
+/* Signup link */
+.signup-link {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #ddd;
+}
+
+.signup-link a {
+    color: #3B82F6;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+
 body {
     margin: 0;
     padding: 0;
