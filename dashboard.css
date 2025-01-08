@@ -63,14 +63,15 @@
     text-align: center;
     gap: 10px;
     padding: 10px; /* Menšie vnútorné odsadenie */
-    height: 100%; /* Zachovať výšku boxu */
-    overflow: hidden; /* Zabrániť pretečeniu */
+    height: 100%; /* Zachovať pôvodnú veľkosť boxu */
+    overflow: hidden; /* Zabrániť rozťahovaniu */
+    box-sizing: border-box; /* Zahrnúť padding do výšky */
 }
 
 /* Avatar – kruhový obrázok */
 .user-profile .avatar {
-    width: 80px; /* Menší avatar */
-    height: 80px;
+    width: 60px; /* Menší avatar */
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #1E3A8A;
@@ -79,14 +80,14 @@
 
 /* Pozdrav pre používateľa */
 .user-profile h3 {
-    font-size: 1rem; /* Menší font pre pozdrav */
+    font-size: 0.9rem; /* Menší text pre pozdrav */
     color: #ffffff; /* Jasná farba textu */
     margin: 5px 0;
     font-weight: 500;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Jemný tieň pre viditeľnosť */
     white-space: nowrap; /* Zabráni zalomeniu textu */
     overflow: hidden;
-    text-overflow: ellipsis; /* Prípadné skrátenie dlhého textu */
+    text-overflow: ellipsis; /* Skrátenie textu ak je dlhý */
 }
 
 /* Tlačidlo Odhlásiť sa */
@@ -106,4 +107,16 @@
 
 .user-profile .form-button:hover {
     background: #1E40AF;
+}
+
+/* Malé boxy zachovajú pevné rozmery */
+.small-box {
+    height: 45%; /* Zachovanie výšky */
+    background: rgba(37, 99, 235, 0.4); /* Jemná priehľadnosť */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Zabráni pretečeniu obsahu */
 }
