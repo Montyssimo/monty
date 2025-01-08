@@ -3,14 +3,17 @@ window.addEventListener('load', () => {
     const token = localStorage.getItem('token');
     const currentPage = window.location.pathname;
 
-    // Ak je token a aktuálna stránka je index.html, presmeruj na dashboard
-    if (token && currentPage.endsWith('index.html')) {
-        window.location.href = 'dashboard.html';
+    console.log('🛠️ Aktuálna stránka:', currentPage);
+    console.log('🛠️ Token:', token);
+
+    // Kontrola pre root stránku (Netlify používa "/" pre index.html)
+    if (token && (currentPage === '/' || currentPage.endsWith('index.html'))) {
+        window.location.replace('dashboard.html');
     }
 
-    // Ak nie je token a stránka je dashboard, vráť používateľa na index.html
+    // Kontrola pre dashboard stránku
     if (!token && currentPage.endsWith('dashboard.html')) {
-        window.location.href = 'index.html';
+        window.location.replace('index.html');
     }
 });
 
