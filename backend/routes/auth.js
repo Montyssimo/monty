@@ -3,8 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const nodemailer = require('nodemailer');
+const verifyToken = require('../middleware/authMiddleware');
 
 const router = express.Router();
+
+// Zabezpečený endpoint pre dashboard
+router.get('/dashboard', verifyToken, (req, res) => {
+    res.json({ message: `Vitaj na dashboarde, ${req.user.nickname}!` });
+});
+
 
 // Nodemailer transporter
 const transporter = nodemailer.createTransport({
