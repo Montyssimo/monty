@@ -1,43 +1,36 @@
-.dashboard {
-    text-align: center;
-    color: #ffffff;
-}
-.dashboard h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-}
-.dashboard .form-button {
-    background: #2563EB;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    margin-top: 20px;
-}
-.dashboard .form-button:hover {
-    background: #1E40AF;
+/* Hlavné rozloženie dashboardu */
+.dashboard-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    height: 100%;
 }
 
-/* User Greeting Box */
-.user-greeting {
-    position: relative;
-    width: 250px;
+/* Ľavá sekcia – dva štvorce pod sebou */
+.left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 30%;
+}
+
+/* Malé boxy na ľavej strane */
+.small-box {
     background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    margin: 20px auto;
-    text-align: center;
-    z-index: 5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 45%;
 }
 
-.user-greeting h2 {
-    font-size: 1.2rem;
-    color: #1E3A8A;
-    margin: 0;
+/* Pravá sekcia – veľký štvorec */
+.right-section {
+    flex: 1;
+}
+
+/* Veľký box na pravej strane */
+.large-box {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
 }
