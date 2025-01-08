@@ -5,6 +5,7 @@
     padding: 20px;
     height: 100%;
     width: 100%;
+    align-items: center; /* Zarovnanie vertikálne na stred */
 }
 
 /* Ľavá sekcia – dva štvorce pod sebou */
@@ -14,11 +15,12 @@
     gap: 20px;
     width: 30%;
     height: 100%;
+    justify-content: center; /* Zarovnanie boxov vertikálne */
 }
 
 /* Malé boxy na ľavej strane */
 .small-box {
-    background: #ffffff;
+    background: rgba(37, 99, 235, 0.4); /* Svetlomodrá s 40% priehľadnosťou */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 45%;
@@ -31,14 +33,18 @@
 .right-section {
     flex: 1;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Veľký box na pravej strane */
 .large-box {
-    background: #ffffff;
+    background: rgba(37, 99, 235, 0.4); /* Svetlomodrá s 40% priehľadnosťou */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
+    height: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
