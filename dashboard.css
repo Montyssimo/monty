@@ -1,0 +1,24 @@
+.dashboard {
+    text-align: center;
+    color: #ffffff;
+}
+.dashboard h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.dashboard .form-button {
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.dashboard .form-button:hover {
+    background: #1E40AF;
+}
