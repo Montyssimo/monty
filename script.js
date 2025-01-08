@@ -6,14 +6,14 @@ window.addEventListener('load', () => {
     console.log('🛠️ Aktuálna stránka:', currentPage);
     console.log('🛠️ Token:', token);
 
-    // Kontrola pre root stránku (Netlify používa "/" pre index.html)
+    // Presmerovanie na dashboard, ak je token
     if (token && (currentPage === '/' || currentPage.endsWith('index.html'))) {
-        window.location.replace('dashboard.html');
+        window.location.href = '/dashboard.html';
     }
 
-    // Kontrola pre dashboard stránku
+    // Presmerovanie na index, ak nie je token
     if (!token && currentPage.endsWith('dashboard.html')) {
-        window.location.replace('index.html');
+        window.location.href = '/index.html';
     }
 });
 
