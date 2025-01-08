@@ -2,40 +2,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = localStorage.getItem('token');
     const currentPage = window.location.pathname;
 
-// Overenie JWT tokenu pri načítaní dashboardu
-if (window.location.pathname.endsWith('dashboard.html')) {
-    document.addEventListener('DOMContentLoaded', async () => {
-        const token = localStorage.getItem('token');
-        const currentPage = window.location.pathname;
-    
-        // Ak je token a sme na index.html, presmeruj na dashboard
-        if (token && currentPage.endsWith('index.html')) {
-            try {
-                const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-    
-                if (response.ok) {
-                    window.location.href = 'dashboard.html';
-                } else {
-                    localStorage.removeItem('token');
+    // ✅ 1. Overenie tokenu a presmerovanie
+    if (!token && currentPage.endsWith('dashboard.html')) {
+        // Ak token neexistuje a sme na dashboard.html → presmeruj na index
+        window.location.href = 'index.html';
+    }
+
+    if (token && currentPage.endsWith('index.html')) {
+        // Ak token existuje a sme na index.html → presmeruj na dashboard
+        try {
+            const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
                 }
-            } catch (error) {
-                console.error('Chyba pri overovaní tokenu:', error);
+            });
+
+            if (response.ok) {
+                window.location.href = 'dashboard.html';
+            } else {
                 localStorage.removeItem('token');
             }
+        } catch (error) {
+            console.error('Chyba pri overovaní tokenu:', error);
+            localStorage.removeItem('token');
         }
-    
-        // Ak nie je token a sme na dashboard.html, vráť používateľa na index
-        if (!token && currentPage.endsWith('dashboard.html')) {
-            window.location.href = 'index.html';
-        }
-    });
-}
+    }
 
-    // Funkcia na odhlásenie
+    // ✅ 2. Funkcia na odhlásenie
     const logoutButton = document.getElementById('logoutButton');
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
@@ -43,21 +36,26 @@ if (window.location.pathname.endsWith('dashboard.html')) {
             window.location.href = 'index.html';
         });
     }
-});
 
-    // Nastavenie pozdravu používateľa
+    // ✅ 3. Nastavenie pozdravu používateľa
     const userGreeting = document.getElementById('userGreeting');
-    try {
-        const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+    const userAvatar = document.querySelector('.avatar');
 
-        if (response.ok) {
-            const data = await response.json();
-            userGreeting.textContent = `Pekný deň, ${data.nickname || 'tester'}!`;
+    if (token && currentPage.endsWith('dashboard.html')) {
+        try {
+            const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                userGreeting.textContent = `Pekný deň, ${data.nickname || 'tester'}!`;
+                userAvatar.src = data.avatar || 'avatar.png';
+            }
+        } catch (error) {
+            console.error('Chyba pri načítaní používateľských údajov:', error);
         }
-    } catch (error) {
-        console.error('Chyba pri načítaní používateľských údajov:', error);
     }
+});
