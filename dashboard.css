@@ -4,6 +4,7 @@
     gap: 20px;
     padding: 20px;
     height: 100%;
+    width: 100%;
 }
 
 /* Ľavá sekcia – dva štvorce pod sebou */
@@ -12,6 +13,7 @@
     flex-direction: column;
     gap: 20px;
     width: 30%;
+    height: 100%;
 }
 
 /* Malé boxy na ľavej strane */
@@ -20,11 +22,15 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Pravá sekcia – veľký štvorec */
 .right-section {
     flex: 1;
+    height: 100%;
 }
 
 /* Veľký box na pravej strane */
@@ -33,4 +39,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
