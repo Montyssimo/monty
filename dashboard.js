@@ -45,19 +45,19 @@ if (window.location.pathname.endsWith('dashboard.html')) {
     }
 });
 
- // Set User Greeting
- const userGreeting = document.getElementById('userGreeting');
- try {
-     const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
-         headers: {
-             'Authorization': `Bearer ${token}`
-         }
-     });
+    // Nastavenie pozdravu používateľa
+    const userGreeting = document.getElementById('userGreeting');
+    try {
+        const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-     if (response.ok) {
-         const data = await response.json();
-         userGreeting.textContent = `Pekný deň, ${data.nickname || 'tester'}!`;
-     }
- } catch (error) {
-     console.error('Chyba pri načítaní používateľských údajov:', error);
- }
+        if (response.ok) {
+            const data = await response.json();
+            userGreeting.textContent = `Pekný deň, ${data.nickname || 'tester'}!`;
+        }
+    } catch (error) {
+        console.error('Chyba pri načítaní používateľských údajov:', error);
+    }
