@@ -18,15 +18,25 @@
     justify-content: center; /* Zarovnanie boxov vertikálne */
 }
 
-/* Malé boxy na ľavej strane */
-.small-box {
+/* Všeobecné nastavenia pre boxy */
+.small-box,
+.large-box {
     background: rgba(37, 99, 235, 0.4); /* Svetlomodrá s 40% priehľadnosťou */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Jemný tieň */
     height: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Efekt pri najazdení myšou */
+.small-box:hover,
+.large-box:hover {
+    transform: scale(1.05); /* Jemné zväčšenie */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Silnejší tieň pri hover */
+    cursor: pointer;
 }
 
 /* Pravá sekcia – veľký štvorec */
@@ -40,12 +50,6 @@
 
 /* Veľký box na pravej strane */
 .large-box {
-    background: rgba(37, 99, 235, 0.4); /* Svetlomodrá s 40% priehľadnosťou */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 90%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
