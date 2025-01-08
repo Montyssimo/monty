@@ -54,27 +54,31 @@ document.addEventListener('DOMContentLoaded', () => {
 if (window.location.pathname.endsWith('dashboard.html')) {
     document.addEventListener('DOMContentLoaded', async () => {
         const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'index.html';
-        } else {
+        const currentPage = window.location.pathname;
+    
+        // Ak je token a sme na index.html, presmeruj na dashboard
+        if (token && currentPage.endsWith('index.html')) {
             try {
                 const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
                     headers: {
-                        Authorization: token
+                        'Authorization': `Bearer ${token}`
                     }
                 });
-                const data = await response.json();
+    
                 if (response.ok) {
-                    document.querySelector('.dashboard h1').innerText = data.message;
+                    window.location.href = 'dashboard.html';
                 } else {
                     localStorage.removeItem('token');
-                    window.location.href = 'index.html';
                 }
             } catch (error) {
-                console.error('Chyba pri načítaní dashboardu:', error);
+                console.error('Chyba pri overovaní tokenu:', error);
                 localStorage.removeItem('token');
-                window.location.href = 'index.html';
             }
+        }
+    
+        // Ak nie je token a sme na dashboard.html, vráť používateľa na index
+        if (!token && currentPage.endsWith('dashboard.html')) {
+            window.location.href = 'index.html';
         }
     });
 }
