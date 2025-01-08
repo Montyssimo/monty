@@ -8,15 +8,16 @@ window.addEventListener('load', () => {
 
     // Presmerovanie na dashboard, ak je token
     if (token && (currentPage === '/' || currentPage.endsWith('index.html'))) {
-        window.location.href = '/dashboard.html';
+        window.location.href = 'dashboard.html';
     }
 
     // Presmerovanie na index, ak nie je token
     if (!token && currentPage.endsWith('dashboard.html')) {
-        window.location.href = '/index.html';
+        window.location.href = 'index.html';
     }
 });
 
+// Prepínanie medzi Login a Signup formulármi
 document.addEventListener('DOMContentLoaded', () => {
     const formTitle = document.getElementById('formTitle');
     const loginForm = document.getElementById('loginForm');
@@ -25,65 +26,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const showLogin = document.getElementById('showLogin');
     const container = document.getElementById('container');
     const formContainer = document.querySelector('.form-container');
-    
 
-    showSignup.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginForm.classList.add('hide');
-        signupForm.classList.add('show');
-        container.classList.add('expanded');
-        formContainer.classList.add('expanded');
-        formTitle.textContent = 'Vytvor si účet';
-    });
+    if (showSignup) {
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.add('hide');
+            signupForm.classList.add('show');
+            container.classList.add('expanded');
+            formContainer.classList.add('expanded');
+            formTitle.textContent = 'Vytvor si účet';
+        });
+    }
 
-    showLogin.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginForm.classList.remove('hide');
-        signupForm.classList.remove('show');
-        container.classList.remove('expanded');
-        formContainer.classList.remove('expanded');
-        formTitle.textContent = 'Vitaj späť';
-    });
+    if (showLogin) {
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.remove('hide');
+            signupForm.classList.remove('show');
+            container.classList.remove('expanded');
+            formContainer.classList.remove('expanded');
+            formTitle.textContent = 'Vitaj späť';
+        });
+    }
 });
 
 // Overenie JWT tokenu pri načítaní dashboardu
-document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        window.location.href = 'index.html';
-    } else {
-        try {
-            const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
-                headers: {
-                    Authorization: token
+if (window.location.pathname.endsWith('dashboard.html')) {
+    document.addEventListener('DOMContentLoaded', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'index.html';
+        } else {
+            try {
+                const response = await fetch('https://monty-88po.onrender.com/api/auth/dashboard', {
+                    headers: {
+                        Authorization: token
+                    }
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    document.querySelector('.dashboard h1').innerText = data.message;
+                } else {
+                    localStorage.removeItem('token');
+                    window.location.href = 'index.html';
                 }
-            });
-            const data = await response.json();
-            if (response.ok) {
-                document.querySelector('.dashboard h1').innerText = data.message;
-            } else {
+            } catch (error) {
+                console.error('Chyba pri načítaní dashboardu:', error);
                 localStorage.removeItem('token');
                 window.location.href = 'index.html';
             }
-        } catch (error) {
-            console.error('Chyba pri načítaní dashboardu:', error);
-            localStorage.removeItem('token');
-            window.location.href = 'index.html';
         }
-    }
-});
+    });
+}
 
 // Funkcia na odhlásenie
 const logoutButton = document.getElementById('logoutButton');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('token'); // Vymaže JWT token
-        window.location.href = 'index.html'; // Presmerovanie na hlavnú stránku
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
     });
 }
 
-//LOGIN A SIGNUP tlačídlá plus funkcionalita
-
+// Funkcionalita pre tlačidlá Login a Signup
 document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('loginButton');
     const signupButton = document.getElementById('signupButton');
