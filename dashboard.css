@@ -1,3 +1,11 @@
+/* Import fontu Poppins (ak nie je už importovaný) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Globálne nastavenie fontu pre celý dashboard */
+body, html {
+    font-family: 'Poppins', sans-serif;
+}
+
 /* Hlavné rozloženie dashboardu */
 .dashboard-layout {
     display: flex;
@@ -21,6 +29,9 @@
 /* Všeobecné nastavenia pre boxy */
 .small-box,
 .large-box {
+    font-family: 'Poppins', sans-serif; /* Dedí sa automaticky z body */
+    color: #ffffff; /* Základná farba textu */
+    text-align: center;
     background: rgba(37, 99, 235, 0.4); /* Svetlomodrá s 40% priehľadnosťou */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Jemný tieň */
@@ -80,6 +91,7 @@
 
 /* Pozdrav pre používateľa */
 .user-profile h3 {
+    font-family: 'Poppins', sans-serif;
     font-size: 0.9rem; /* Menší text pre pozdrav */
     color: #ffffff; /* Jasná farba textu */
     margin: 5px 0;
@@ -92,6 +104,7 @@
 
 /* Tlačidlo Odhlásiť sa */
 .user-profile .form-button {
+    font-family: 'Poppins', sans-serif;
     background: #2563EB;
     color: #fff;
     border: none;
