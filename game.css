@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e3a8a;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#game-container {
+    text-align: center;
+}
+
+#game-canvas {
+    border: 2px solid white;
+    background-color: #2563eb;
+}

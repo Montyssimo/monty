@@ -104,4 +104,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+
+// Endpoint na kontrolu prihlásenia
+router.get('/check-auth', verifyToken, (req, res) => {
+    res.json({ isAuthenticated: true, user: req.user });
+});
+
 module.exports = router;

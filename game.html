@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hra</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Vitaj v hre!</h1>
+        <canvas id="game-canvas"></canvas>
+    </div>
+    <script src="game.js"></script>
+    <script>
+        // Kontrola prihlásenia
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/auth/check-auth', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
+                }
+            } catch (error) {
+                console.error('Chyba pri overovaní prihlásenia:', error);
+                window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
+            }
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>
