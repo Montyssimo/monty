@@ -1,23 +1,44 @@
 const gameContainer = document.getElementById('game-container');
 const svg = document.getElementById('snake-svg');
+const gameOverModal = document.getElementById('game-over-modal');
+const playAgainButton = document.getElementById('play-again-button');
+const backToDashboardButton = document.getElementById('back-to-dashboard-button');
 
-const gridWidth = 20; // Počet buniek na šírku
-const gridHeight = 15; // Počet buniek na výšku
-const tileSize = 40; // Veľkosť jednej bunky v pixeloch (zodpovedá CSS background-size)
-
-let snake = [{ x: 10, y: 8 }]; // Had začína v strede
-let direction = { x: 0, y: 0 }; // Had sa na začiatku nehýbe
-let nextDirection = { x: 0, y: 0 }; // Buffer pre nový smer
-let food = generateFood(); // Inicializujeme jedlo
+let gridWidth = 20;
+let gridHeight = 15;
+let tileSize = 40;
+let snake = [{ x: 10, y: 8 }];
+let direction = { x: 0, y: 0 };
+let nextDirection = { x: 0, y: 0 };
+let food = generateFood();
 let gameOver = false;
 let frameCounter = 0;
 const framesPerMove = 8;
 
-// Funkcia na generovanie náhodného jedla
+function endGame() {
+    console.log('endGame called');
+    gameOver = true;
+    gameOverModal.classList.remove('hidden');
+}
+
+playAgainButton.addEventListener('click', () => {
+    console.log('Play Again clicked');
+    gameOver = false;
+    snake = [{ x: 10, y: 8 }];
+    direction = { x: 0, y: 0 };
+    food = generateFood();
+    gameOverModal.classList.add('hidden');
+    drawGame();
+    requestAnimationFrame(gameLoop);
+});
+
+backToDashboardButton.addEventListener('click', () => {
+    window.location.href = '/dashboard.html';
+});
+
 function generateFood() {
     let foodPosition;
     let validPosition = false;
-
     while (!validPosition) {
         foodPosition = {
             x: Math.floor(Math.random() * gridWidth),
@@ -25,61 +46,33 @@ function generateFood() {
         };
         validPosition = !snake.some(segment => segment.x === foodPosition.x && segment.y === foodPosition.y);
     }
-
     return foodPosition;
 }
 
-// Funkcia na vykreslenie hry
 function drawGame() {
     svg.innerHTML = '';
     snake.forEach((segment, index) => {
-        let type = 'body';
-        if (index === 0) type = 'head';
-        else if (index === snake.length - 1) type = 'tail';
-
+        const type = index === 0 ? 'head' : index === snake.length - 1 ? 'tail' : 'body';
         const segmentElement = createSnakeSegment(segment.x, segment.y, type);
         svg.appendChild(segmentElement);
     });
-
     const foodElement = createSnakeSegment(food.x, food.y, 'food');
     svg.appendChild(foodElement);
 }
 
-// Funkcia na vytváranie segmentov
 function createSnakeSegment(x, y, type) {
-    const segment = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    let className;
-
-    switch (type) {
-        case 'head':
-            className = 'snake-head';
-            break;
-        case 'body':
-            className = 'snake-body';
-            break;
-        case 'tail':
-            className = 'snake-tail';
-            break;
-        case 'food':
-            className = 'food';
-            break;
-        default:
-            className = 'snake-body';
-    }
-
-    segment.setAttribute("cx", x * tileSize + tileSize / 2);
-    segment.setAttribute("cy", y * tileSize + tileSize / 2);
-    segment.setAttribute("r", tileSize / 2.5);
-    segment.setAttribute("class", className);
-
+    const segment = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    const className = type === 'head' ? 'snake-head' : type === 'tail' ? 'snake-tail' : type === 'food' ? 'food' : 'snake-body';
+    segment.setAttribute('cx', x * tileSize + tileSize / 2);
+    segment.setAttribute('cy', y * tileSize + tileSize / 2);
+    segment.setAttribute('r', tileSize / 2.5);
+    segment.setAttribute('class', className);
     return segment;
 }
 
-// Pohyb hada
 function moveSnake() {
     if (gameOver) return;
     direction = { ...nextDirection };
-
     if (direction.x === 0 && direction.y === 0) return;
 
     const newHead = {
@@ -93,8 +86,7 @@ function moveSnake() {
     if (newHead.y >= gridHeight) newHead.y = 0;
 
     if (snake.some((segment, index) => index !== 0 && segment.x === newHead.x && segment.y === newHead.y)) {
-        gameOver = true;
-        alert('Game Over!');
+        endGame();
         return;
     }
 
@@ -106,7 +98,6 @@ function moveSnake() {
     }
 }
 
-// Hlavná herná slučka
 function gameLoop() {
     frameCounter++;
     if (frameCounter >= framesPerMove) {
@@ -119,17 +110,22 @@ function gameLoop() {
     }
 }
 
-// Ovládanie hada
-window.addEventListener('keydown', (e) => {
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
+    console.log(gameOverModal.classList);
+    gameOverModal.classList.add('hidden');
+    console.log(gameOverModal.classList);
+    gameOver = false;
+    drawGame();
+    requestAnimationFrame(gameLoop);
+});
+
+window.addEventListener('keydown', e => {
     if (e.key === 'ArrowUp' && direction.y === 0) nextDirection = { x: 0, y: -1 };
     if (e.key === 'ArrowDown' && direction.y === 0) nextDirection = { x: 0, y: 1 };
     if (e.key === 'ArrowLeft' && direction.x === 0) nextDirection = { x: -1, y: 0 };
     if (e.key === 'ArrowRight' && direction.x === 0) nextDirection = { x: 1, y: 0 };
 });
-
-// Načítanie hry
-drawGame();
-requestAnimationFrame(gameLoop);
 
 
 

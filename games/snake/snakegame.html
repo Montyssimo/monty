@@ -8,15 +8,26 @@
 </head>
 <body>
     <h1>Snake by Kucík</h1>
-<div class="container">
-    <div id="game-container">
-        <svg id="snake-svg" xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
-            <!-- Dynamické segmenty hada -->
-        </svg>
+    <div class="container">
+        <div id="game-container">
+            <svg id="snake-svg" xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+                <!-- Dynamické segmenty hada -->
+            </svg>
+        </div>
     </div>
-</div>
+
+    <div id="game-over-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Koniec hry</h2>
+            <p>Hadík nabúral a teraz je smutný. Vidíš, čo si spôsobil?</p>
+            <div class="modal-buttons">
+                <button id="play-again-button">Hrať znova</button>
+                <button id="back-to-dashboard-button">Späť na dashboard</button>
+            </div>
+        </div>
+    </div>
+
     <script src="./snakegame.js"></script>
     <script src="/games/snake/auth-check.js" defer></script>
-
 </body>
 </html>
