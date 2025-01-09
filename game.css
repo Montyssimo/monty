@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #1e3a8a;
+    background: linear-gradient(to bottom right, #1E3A8A, #2563EB);
     color: white;
     font-family: 'Poppins', sans-serif;
 }
@@ -16,5 +16,5 @@ body {
 
 #game-canvas {
     border: 2px solid white;
-    background-color: #2563eb;
+    background-color: rgba(37, 99, 235, 0.4); /* Priehľadné pozadie pre canvas */
 }
