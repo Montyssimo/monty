@@ -1,9 +1,9 @@
 const gameContainer = document.getElementById('game-container');
 const svg = document.getElementById('snake-svg');
 
-const gridWidth = 20; // Počet buniek na šírku (1000px / 50px)
-const gridHeight = 16; // Počet buniek na výšku (800px / 50px)
-const tileSize = 5; // Veľkosť jednej bunky v jednotkách viewBoxu
+const gridWidth = 20; // Počet buniek na šírku
+const gridHeight = 15; // Počet buniek na výšku
+const tileSize = 40; // Veľkosť jednej bunky v pixeloch (zodpovedá CSS background-size)
 
 let snake = [{ x: 10, y: 8 }]; // Had začína v strede
 let direction = { x: 0, y: 0 }; // Had sa na začiatku nehýbe
@@ -21,7 +21,7 @@ function generateFood() {
     while (!validPosition) {
         foodPosition = {
             x: Math.floor(Math.random() * gridWidth),
-            y: Math.floor(Math.random() * gridHeight)
+            y: Math.floor(Math.random() * gridHeight),
         };
         validPosition = !snake.some(segment => segment.x === foodPosition.x && segment.y === foodPosition.y);
     }
@@ -94,7 +94,7 @@ function moveSnake() {
 
     if (snake.some((segment, index) => index !== 0 && segment.x === newHead.x && segment.y === newHead.y)) {
         gameOver = true;
-        alert("Game Over!");
+        alert('Game Over!');
         return;
     }
 
@@ -130,6 +130,8 @@ window.addEventListener('keydown', (e) => {
 // Načítanie hry
 drawGame();
 requestAnimationFrame(gameLoop);
+
+
 
 
 

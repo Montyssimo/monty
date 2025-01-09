@@ -27,9 +27,9 @@ h1 {
     background-color: rgba(50, 48, 158, 0.8);
     background-image: linear-gradient(45deg, rgba(30, 60, 114, 0.2) 25%, transparent 25%, transparent 75%, rgba(30, 60, 114, 0.2) 75%),
                       linear-gradient(45deg, rgba(30, 60, 114, 0.2) 25%, transparent 25%, transparent 75%, rgba(30, 60, 114, 0.2) 75%);
-    background-size: 50px 50px;
-    background-position: 0 0, 25px 25px;
-    border: 2px solid rgba(30, 60, 114, 0.5);
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+    border: 5px solid rgba(50, 205, 50);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -43,14 +43,14 @@ svg {
 
 /* Štýly pre hada a jedlo */
 .snake-head {
-    fill: #32CD32;
+    fill: rgb(50, 205, 50);
     stroke: #000;
     stroke-width: 0.3;
     
 }
 
 .snake-body {
-    fill: #228B22;
+    fill: #228b22;
     stroke: #000;
     stroke-width: 0.2;
     
