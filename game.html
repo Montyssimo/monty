@@ -3,41 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hra</title>
+    <title>Slovný Futbal</title>
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <div id="game-container">
-        <h1>Vitaj v hre!</h1>
-        <canvas id="game-canvas"></canvas>
+        <h1>Slovný Futbal</h1>
+        <div id="letters-container">
+            <p>Dostupné písmená: <span id="letters"></span></p>
+        </div>
+        <input type="text" id="word-input" placeholder="Zadaj slovo">
+        <button id="submit-word">Potvrdiť slovo</button>
+        <div id="words-list">
+            <p>Vytvorené slová: <span id="words"></span></p>
+        </div>
+        <p>Skóre: <span id="score">0</span></p>
     </div>
     <script src="game.js"></script>
-    <script>
-        // Kontrola prihlásenia
-        async function checkAuth() {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/auth/check-auth', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
-                }
-            } catch (error) {
-                console.error('Chyba pri overovaní prihlásenia:', error);
-                window.location.href = '/index.html'; // Presmerovanie na prihlasovaciu stránku
-            }
-        }
-
-        checkAuth();
-    </script>
 </body>
 </html>

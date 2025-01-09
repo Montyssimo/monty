@@ -12,9 +12,45 @@ body {
 
 #game-container {
     text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-#game-canvas {
-    border: 2px solid white;
-    background-color: rgba(37, 99, 235, 0.4); /* Priehľadné pozadie pre canvas */
+#letters {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#word-input {
+    padding: 10px;
+    font-size: 1em;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+#submit-word {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563EB;
+    color: white;
+    cursor: pointer;
+}
+
+#submit-word:hover {
+    background-color: #1E40AF;
+}
+
+#words-list {
+    margin-top: 20px;
+}
+
+#score {
+    font-weight: bold;
+    font-size: 1.5em;
 }
