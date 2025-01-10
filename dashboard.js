@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Dáta prijaté zo servera:', data);
+                console.log('Odpoveď zo servera:', data); // Log odpovede servera
 
-                userGreeting.textContent = `Pekný deň, ${data.nickname || 'tester'}!`;
+                userGreeting.textContent = data.message;
                 userAvatar.src = data.avatar || 'avatar.png';
             } else {
                 console.warn('Chyba pri načítaní údajov používateľa:', response.status);
