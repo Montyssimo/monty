@@ -133,10 +133,8 @@ body, html {
     text-overflow: ellipsis; /* Skrátenie textu ak je dlhý */
 }
 
-/* Tlačidlo Odhlásiť sa */
-.user-profile .form-button {
-    font-family: 'Poppins', sans-serif;
-    background: #2563EB;
+.user-profile .profile-button {
+    background: #2563EB; /* Modré tlačidlo */
     color: #fff;
     border: none;
     padding: 6px 12px;
@@ -145,12 +143,32 @@ body, html {
     font-size: 0.8rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    margin-top: 10px;
+    margin-bottom: 10px; /* Priestor medzi tlačidlami */
     transition: background 0.3s ease;
 }
 
-.user-profile .form-button:hover {
+.user-profile .profile-button:hover {
     background: #1E40AF;
+}
+
+
+/* Tlačidlo Odhlásiť sa */
+.user-profile .logout-button {
+    background: #DC2626; /* Červené tlačidlo */
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin-top: auto; /* Posunutie na spodok */
+    transition: background 0.3s ease;
+}
+
+.user-profile .logout-button:hover {
+    background: #B91C1C;
 }
 
 /* Malé boxy zachovajú pevné rozmery */
