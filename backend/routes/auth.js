@@ -9,7 +9,9 @@ const router = express.Router();
 
 // Zabezpečený endpoint pre dashboard
 router.get('/dashboard', verifyToken, (req, res) => {
-    res.json({ message: `Vitaj na dashboarde, ${req.user.nickname}!` });
+    res.json({ 
+        nickname: req.user.nicknamem,
+        message: `Vitaj na dashboarde, ${req.user.nickname}!` });
 });
 
 
