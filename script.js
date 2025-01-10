@@ -82,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 console.log('Prihlásenie - Odpoveď servera:', data); // Log odpovede zo servera
                 console.log('Prihlásenie - Token získaný z odpovede:', data.token); // Log tokenu z odpovede
-                console.log('Odpoveď servera:', data);
-                console.log('HTTP status:', response.status);
 
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
