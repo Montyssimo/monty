@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
         if (!user.isVerified) {
             return res.status(400).json({ message: 'Účet nie je overený' });
         }
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, nickname: user.nickname }, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
