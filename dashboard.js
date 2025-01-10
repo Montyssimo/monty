@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
 
             console.log('Overenie tokenu - HTTP status:', response.status);
+            console.log('Odpoveď servera:', data); // Výstup odpovede zo servera
+            console.log('HTTP status:', response.status); // Stavový kód odpovede
+            console.log('Odosielanie údajov:', { email, password }); // Log vstupu
+            console.log('Odpoveď servera:', data); // Log odpovede zo servera
+            console.log('HTTP status:', response.status); // Log stavového kódu
 
             if (response.ok) {
                 console.log('Token overený. Presmerovanie na dashboard.html');
