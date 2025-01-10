@@ -40,6 +40,7 @@ body, html {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    z-index: 1;
 }
 
 /* Efekt pri najazdení myšou */
@@ -63,6 +64,36 @@ body, html {
 .large-box {
     height: 90%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    background: rgba(37, 99, 235, 0.4); /* Pôvodné pozadie */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Pôvodný tieň */
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 3; /* Horná časť boxu */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.bottom-container {
+    flex: 1.5; /* Zvýšený pomer pre väčšiu výšku */
+    display: flex;
+    justify-content: center; /* Zarovnanie aplikácií na stred */
+    align-items: center; /* Vertikálne zarovnanie */
+    padding: 10px;
+    background: rgba(37, 99, 235, 0.3); /* Jemná priehľadnosť */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative; /* Umožňuje pozíciu šípok */
 }
 
 /* Horný ľavý box s avatarom a pozdravom */
@@ -134,4 +165,81 @@ body, html {
     overflow: hidden; /* Zabráni pretečeniu obsahu */
 }
 
+.game-launcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Odstup medzi logom a tlačidlom */
+    width: 150px; /* Pevná šírka pre konzistentnosť */
+    text-align: center;
+    margin: 0 20px; /* Priestor medzi aplikáciami */
+}
 
+.game-logo {
+    width: 150px; /* Rovnaká veľkosť pre všetky logá */
+    height: 150px;
+    border-radius: 15px; /* Jemné zaoblenie */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.launch-button {
+    background: #13b644;
+    color: #fff;
+    border: none;
+    padding: 16px 32px; /* Menšie tlačidlo */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.launch-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.slider-arrow {
+    position: absolute; /* Fixuje šípky na okrajoch */
+    top: 50%; /* Vertikálne zarovná šípky */
+    transform: translateY(-50%); /* Posunie ich do stredu vertikálne */
+    background: rgba(37, 99, 235, 0.7); /* Farba šípok */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.slider-arrow:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.left-arrow {
+    left: -20px; /* Posunutie mierne mimo kontajneru naľavo */
+    }
+
+
+.right-arrow {
+    right: -20px; /* Posunutie mierne mimo kontajneru napravo */
+}
+
+.coming-soon {
+    background: #aaa; /* Neaktívne tlačidlo */
+    cursor: not-allowed;
+    border: none;
+    padding: 16px 32px; /* Menšie tlačidlo */
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
