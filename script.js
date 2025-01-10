@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 const data = await response.json();
+                console.log('Odpoveď servera:', data); // Výstup odpovede zo servera
+                console.log('HTTP status:', response.status); // Stavový kód odpovede
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
                     window.location.href = 'dashboard.html';
