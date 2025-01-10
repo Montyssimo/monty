@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dashboard.css">
     <script defer src="dashboard.js"></script>
+    <script defer src="script.js"></script> <!-- Prepojenie so script.js -->
 </head>
 <body>
     <div class="container">
@@ -27,25 +28,24 @@
                         <h2>Vitajte na dashboarde</h2>
                         <p>Vyberte si aplikáciu, ktorú chcete použiť.</p>
                     </div>
-                
+
                     <!-- Nový spodný container -->
                     <div class="bottom-container">
                         <button class="slider-arrow left-arrow">&lt;</button>
 
-                            <div class="game-launcher">
-                                <img src="images/snakelogo.png" alt="Snake Game Logo" class="game-logo">
-                                <button class="launch-button" onclick="window.location.href='games/snake/snakegame.html'">HRAŤ</button>
-                            </div>
-                            <div class="game-launcher">
-                                <img src="images/comingsoon.png" alt="Coming Soon Logo" class="game-logo">
-                                <button class="launch-button coming-soon" disabled>ČOSKORO</button>
-                            </div>
-                            <div class="game-launcher">
-                                <img src="images/comingsoon.png" alt="Coming Soon Logo" class="game-logo">
-                                <button class="launch-button coming-soon" disabled>ČOSKORO</button>
-                            </div>
-                           
-                        
+                        <div class="game-launcher">
+                            <img src="images/snakelogo.png" alt="Snake Game Logo" class="game-logo">
+                            <button class="launch-button" onclick="window.location.href='games/snake/snakegame.html'">HRAŤ</button>
+                        </div>
+                        <div class="game-launcher">
+                            <img src="images/comingsoon.png" alt="Coming Soon Logo" class="game-logo">
+                            <button class="launch-button coming-soon" disabled>ČOSKORO</button>
+                        </div>
+                        <div class="game-launcher">
+                            <img src="images/comingsoon.png" alt="Coming Soon Logo" class="game-logo">
+                            <button class="launch-button coming-soon" disabled>ČOSKORO</button>
+                        </div>
+
                         <button class="slider-arrow right-arrow">&gt;</button>
                     </div>
                 </div>

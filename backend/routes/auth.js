@@ -98,7 +98,7 @@ router.post('/login', async (req, res) => {
             sameSite: 'strict',
             maxAge: 3600000 // 1 hodina
         });
-        res.json({ message: 'Prihlásenie úspešné' });
+        res.json({ token, message: 'Prihlásenie úspešné' });
     } catch (error) {
         res.status(500).json({ message: 'Chyba servera', error: error.message });
     }

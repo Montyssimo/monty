@@ -70,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
+            console.log('Odosielanie údajov na prihlásenie:', { email, password });
+
             try {
                 const response = await fetch('https://monty-88po.onrender.com/api/auth/login', {
                     method: 'POST',
@@ -78,13 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 const data = await response.json();
-                console.log('Odpoveď servera:', data); // Výstup odpovede zo servera
-                console.log('HTTP status:', response.status); // Stavový kód odpovede
-                console.log('Odosielanie údajov:', { email, password }); // Log vstupu
-                console.log('Odpoveď servera:', data); // Log odpovede zo servera
-                console.log('HTTP status:', response.status); // Log stavového kódu
+                console.log('Prihlásenie - Odpoveď servera:', data); // Log odpovede zo servera
+                console.log('Prihlásenie - Token získaný z odpovede:', data.token); // Log tokenu z odpovede
+                console.log('Odpoveď servera:', data);
+                console.log('HTTP status:', response.status);
+
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
+                    console.log('Token uložený do localStorage:', data.token);
                     window.location.href = 'dashboard.html';
                 } else {
                     alert(data.message || 'Nepodarilo sa prihlásiť');
