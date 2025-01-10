@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 console.log('Odpoveď servera:', data); // Výstup odpovede zo servera
                 console.log('HTTP status:', response.status); // Stavový kód odpovede
+                console.log('Odosielanie údajov:', { email, password }); // Log vstupu
+                console.log('Odpoveď servera:', data); // Log odpovede zo servera
+                console.log('HTTP status:', response.status); // Log stavového kódu
                 if (response.ok) {
                     localStorage.setItem('token', data.token);
                     window.location.href = 'dashboard.html';
