@@ -12,9 +12,12 @@ let direction = { x: 0, y: 0 };
 let nextDirection = { x: 0, y: 0 };
 let food = generateFood();
 let gameOver = false;
-let frameCounter = 0;
-const framesPerMove = 8;
 
+// Časový interval a rýchlosť
+let lastUpdateTime = 0; // Posledný čas, kedy sa hra aktualizovala
+let moveInterval = 100; // Interval pohybu hada v milisekundách (200 ms = 5 pohybov za sekundu)
+
+// Funkcie na resetovanie hry
 function endGame() {
     console.log('endGame called');
     gameOver = true;
@@ -36,6 +39,7 @@ backToDashboardButton.addEventListener('click', () => {
     window.location.href = '/dashboard.html';
 });
 
+// Generovanie náhodnej pozície jedla
 function generateFood() {
     let foodPosition;
     let validPosition = false;
@@ -49,6 +53,7 @@ function generateFood() {
     return foodPosition;
 }
 
+// Kreslenie hada a jedla
 function drawGame() {
     svg.innerHTML = '';
     snake.forEach((segment, index) => {
@@ -70,6 +75,7 @@ function createSnakeSegment(x, y, type) {
     return segment;
 }
 
+// Pohyb hada
 function moveSnake() {
     if (gameOver) return;
     direction = { ...nextDirection };
@@ -80,11 +86,13 @@ function moveSnake() {
         y: snake[0].y + direction.y,
     };
 
+    // Prechod cez steny
     if (newHead.x < 0) newHead.x = gridWidth - 1;
     if (newHead.x >= gridWidth) newHead.x = 0;
     if (newHead.y < 0) newHead.y = gridHeight - 1;
     if (newHead.y >= gridHeight) newHead.y = 0;
 
+    // Kolízia so sebou samým
     if (snake.some((segment, index) => index !== 0 && segment.x === newHead.x && segment.y === newHead.y)) {
         endGame();
         return;
@@ -98,28 +106,23 @@ function moveSnake() {
     }
 }
 
-function gameLoop() {
-    frameCounter++;
-    if (frameCounter >= framesPerMove) {
+// Herná slučka
+function gameLoop(timestamp) {
+    if (!lastUpdateTime) lastUpdateTime = timestamp; // Inicializácia času
+    const timeSinceLastMove = timestamp - lastUpdateTime;
+
+    if (timeSinceLastMove >= moveInterval) {
         moveSnake();
         drawGame();
-        frameCounter = 0;
+        lastUpdateTime = timestamp;
     }
+
     if (!gameOver) {
         requestAnimationFrame(gameLoop);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded');
-    console.log(gameOverModal.classList);
-    gameOverModal.classList.add('hidden');
-    console.log(gameOverModal.classList);
-    gameOver = false;
-    drawGame();
-    requestAnimationFrame(gameLoop);
-});
-
+// Ovládanie pomocou šípok
 window.addEventListener('keydown', e => {
     if (e.key === 'ArrowUp' && direction.y === 0) nextDirection = { x: 0, y: -1 };
     if (e.key === 'ArrowDown' && direction.y === 0) nextDirection = { x: 0, y: 1 };
@@ -127,7 +130,13 @@ window.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' && direction.x === 0) nextDirection = { x: 1, y: 0 };
 });
 
-
-
+// Spustenie hry
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded');
+    gameOverModal.classList.add('hidden');
+    gameOver = false;
+    drawGame();
+    requestAnimationFrame(gameLoop);
+});
 
 
